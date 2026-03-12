@@ -26,7 +26,7 @@ public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(nullable = false)
 	private String name;
@@ -38,10 +38,17 @@ public class Category {
 	@JoinColumn(name="created_by")
 	private User createdBy;
 	
+	@Column(nullable = false)
+    private Boolean isActive = true;
+	
 	private LocalDateTime createdAt;
 	
 	@PrePersist
 	protected void onCreate() {
-		createdAt = LocalDateTime.now();
+	    createdAt = LocalDateTime.now();
+
+	    if (isActive == null) {
+	        isActive = true;
+	    }
 	}
 }

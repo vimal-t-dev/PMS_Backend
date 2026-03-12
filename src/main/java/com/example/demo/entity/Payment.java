@@ -28,10 +28,10 @@ public class Payment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(nullable = false)
-	private double amount;
+	private Double amount;
 	
 	@Column(nullable = false)
 	private String paymentType;
@@ -40,14 +40,15 @@ public class Payment {
 	private LocalDate paymentDate;
 	
 	
-	private String descripition;
+	private String description;
 	
 	private String referenceNumber;
 	
 	@Column(nullable = false)
 	private String status;
 	
-	private boolean isDeleted = false;
+	@Column(name = "is_deleted", nullable = false)
+	private Boolean isDeleted = false;
 	
 	private LocalDateTime createdAt;
 	

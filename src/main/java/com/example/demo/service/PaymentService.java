@@ -23,6 +23,10 @@ public class PaymentService {
             throw new RuntimeException("Amount must be greater than 0");
         }
 
+        if (payment.getIsDeleted() == null) {
+            payment.setIsDeleted(false);
+        }
+
         return paymentRepo.save(payment);
     }
 
@@ -42,7 +46,7 @@ public class PaymentService {
         Payment payment = paymentRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Payment not found"));
 
-        payment.setDeleted(true);
+        payment.setIsDeleted(true);
         paymentRepo.save(payment);
 
         return "Payment soft deleted successfully";
