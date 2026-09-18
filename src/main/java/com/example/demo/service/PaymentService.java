@@ -30,7 +30,7 @@ public class PaymentService {
         return paymentRepo.save(payment);
     }
 
-    // GET USER PAYMENTS (excluding deleted)
+    // GET USER PAYMENTS
     public List<Payment> getPaymentsByUser(int userId) {
         return paymentRepo.findByCreatedBy_IdAndIsDeletedFalse(userId);
     }
@@ -48,6 +48,7 @@ public class PaymentService {
 
         payment.setIsDeleted(true);
         paymentRepo.save(payment);
+        
 
         return "Payment soft deleted successfully";
     }
